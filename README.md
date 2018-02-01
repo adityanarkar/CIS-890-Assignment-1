@@ -18,4 +18,8 @@ Instructions to generate CNF formula
 
  groovy RandomFormulaGenerator.groovy -n N -k K -l L --strict
 
+3. You will get a file with **.cnf** extension in the same folder of your program.
+
 Note: Enter your constraint parameters in place of N, K and L by following definitions given above for each option. --strict option is not necessary to generate CNF formula. By specifying --strict, every clause contained in a generated formula will be having L literals.
+
+**---Aditya Narkar---**

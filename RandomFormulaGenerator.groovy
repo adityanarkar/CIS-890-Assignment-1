@@ -21,9 +21,9 @@ void gettersFromCommandLine() {
     catch (ArrayIndexOutOfBoundsException e) {
         println("Procceding to generate without --strict \n")
     }
-    def inputsFile = new File("inputs.txt")
-    inputsFile << numberOfNonEmptyClauses.toString()+" "+maxNumberOfVars.toString()+" "+maxSizeOfClause.toString()+" "+strictNumOfVars
+
 }
+
 gettersFromCommandLine()
 generateFormula()
 
@@ -31,7 +31,6 @@ void generateFormula() {
     def loopCounter = 1
     while ({
         def clause = getOneClause()
-        println(clause)
         if (!isRedundant(clause)) {
             formula << clause
             ++loopCounter
@@ -39,11 +38,9 @@ void generateFormula() {
         loopCounter <= numberOfNonEmptyClauses
     }())
 
-    allFormulas << formula
-
-    for (List itr : allFormulas) {
-        println(itr)
-    }
+        for (List itr : formula) {
+            println(itr)
+        }
     if (formula.size() > 0) {
         writeToFile()
     }
@@ -105,18 +102,18 @@ void writeToFile() {
     def cnfFile
     def filename
     while ({
-        filename = "RandomCnfFormula"+fileNumber+".cnf"
-        cnfFile = new File("tree/"+filename)
+        filename = "RandomCnfFormula" + fileNumber + ".cnf"
+        cnfFile = new File(filename)
         ++fileNumber
         cnfFile.exists()
     }());
-    cnfFile << "c "+filename
+    cnfFile << "c " + filename
     cnfFile << System.getProperty("line.separator").toString()
-    cnfFile << "p cnf "+numberOfNonEmptyClauses.toString()+" "+maxNumberOfVars.toString()+" "+maxSizeOfClause.toString()
-    for (List oneClauseAtATime : formula){
+    cnfFile << "p cnf " + numberOfNonEmptyClauses.toString() + " " + maxNumberOfVars.toString() + " " + maxSizeOfClause.toString()
+    for (List oneClauseAtATime : formula) {
         cnfFile << System.getProperty("line.separator").toString()
-        for (int literal : oneClauseAtATime){
-            cnfFile << literal.toString()+" "
+        for (int literal : oneClauseAtATime) {
+            cnfFile << literal.toString() + " "
         }
         cnfFile << "0"
     }
