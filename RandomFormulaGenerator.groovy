@@ -31,10 +31,10 @@ void generateFormula() {
     def loopCounter = 1
     while ({
         def clause = getOneClause()
-        if (!isRedundant(clause)) {
+//        if (!isRedundant(clause)) {
             formula << clause
             ++loopCounter
-        }
+//        }
         loopCounter <= numberOfNonEmptyClauses
     }());
 
