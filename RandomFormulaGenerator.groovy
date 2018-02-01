@@ -36,7 +36,7 @@ void generateFormula() {
             ++loopCounter
         }
         loopCounter <= numberOfNonEmptyClauses
-    }())
+    }());
 
         for (List itr : formula) {
             println(itr)
